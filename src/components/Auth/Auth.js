@@ -16,7 +16,6 @@ export default function Auth() {
 
   const submitAuth = async () => {
     // TODO
-    console.log('button clicked');
     //call authUser with state
     const response = await authUser(email, password, type);
     //set user
@@ -28,7 +27,7 @@ export default function Auth() {
 
   // if user exists then redirect to tasks
   if (user) {
-    return <Redirect to="/tasks" />;
+    return <Redirect to="/items" />;
   }
 
   return (
