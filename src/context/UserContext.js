@@ -13,8 +13,3 @@ const UserProvider = ({ children }) => {
 };
 
 export { UserContext, UserProvider };
-
-// After lunch - hello place holder needs to update with user email
-// sign out button needs to take user back to log in screen 
-// list component needs to render 
-  // user should be able to add new items to their list 
