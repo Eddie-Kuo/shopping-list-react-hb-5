@@ -2,15 +2,33 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import './Auth.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { authUser } from '../../services/auth';
+import { UserContext } from '../../context/UserContext';
+import { Redirect, useParams } from 'react-router-dom';
 
 export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // type will be set with use params
+  const { type } = useParams();
+  const { user, setUser } = useContext(UserContext);
 
   const submitAuth = async () => {
     // TODO
+    //call authUser with state
+    const response = await authUser(email, password, type);
+    //set user
+    setUser(response);
+    // reset the inputs
+    setEmail('');
+    setPassword('');
   };
+
+  // if user exists then redirect to tasks
+  if (user) {
+    return <Redirect to="/items" />;
+  }
 
   return (
     <div className="auth box">
